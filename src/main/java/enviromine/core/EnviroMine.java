@@ -62,6 +62,8 @@ public class EnviroMine
 		
 		// Load Configuration files And Custom files
 		EM_ConfigHandler.initConfig();
+		Serialize.doSerialize(null);
+		
 		
 		ObjectHandler.initItems();
 		ObjectHandler.registerItems();
@@ -121,6 +123,7 @@ public class EnviroMine
 		
 		EM_ConfigHandler.SearchForDimensions();
 		EM_ConfigHandler.SearchForBiomes();
+		Serialize.DeSerialize(null);
 		
 		EnviroMine.logger.log(Level.INFO, "Loaded " + EM_Settings.armorProperties.size() + " armor properties");
 		EnviroMine.logger.log(Level.INFO, "Loaded " + EM_Settings.blockProperties.size() + " block properties");
