@@ -85,13 +85,13 @@ public class UI_Settings {
 		if (!prop.containsKey("useFarenheit"))
 			prop.setProperty("useFarenheit", "true");
 		if (!prop.containsKey("heatBarPos"))
-			prop.setProperty("heatBarPos", "Bottom_Left");
+			prop.setProperty("heatBarPos", "custom_0,97");
 		if (!prop.containsKey("waterBarPos"))
-			prop.setProperty("waterBarPos", "Bottom_Left");
+			prop.setProperty("waterBarPos", "custom_0,93");
 		if (!prop.containsKey("sanityBarPos"))
-			prop.setProperty("sanityBarPos", "Bottom_Right");
+			prop.setProperty("sanityBarPos", "custom_82,93");
 		if (!prop.containsKey("oxygenBarPos"))
-			prop.setProperty("oxygenBarPos", "Bottom_Right");
+			prop.setProperty("oxygenBarPos", "custom_82,97");
 		if (!prop.containsKey("ShowText"))
 			prop.setProperty("ShowText", "true");
 		if (!prop.containsKey("ShowDebug"))
@@ -105,6 +105,26 @@ public class UI_Settings {
 		if (!prop.containsKey("minimalHud"))
 			prop.setProperty("minimalHud", "false");
 
+		//TODO TEMP FIX FOR TESTING
+		if (prop.containsKey("heatBarPos"))
+		{
+			prop.setProperty("heatBarPos", "custom_0,97");
+		}
+			
+		if (prop.containsKey("waterBarPos"))
+		{
+			prop.setProperty("waterBarPos", "custom_0,93");
+		}
+		if (prop.containsKey("sanityBarPos"))
+		{
+			prop.setProperty("sanityBarPos", "custom_82,93");
+		}
+		if (prop.containsKey("oxygenBarPos"))
+		{
+			prop.setProperty("oxygenBarPos", "custom_82,97");
+		}
+
+		
 		WriteSettings(prop);
 		return prop;
 	}

@@ -4,8 +4,10 @@ import java.math.BigDecimal;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import enviromine.EnviroUtils;
@@ -26,6 +28,7 @@ public class EM_Gui_Bars extends GuiScreen
 	@Override
 	public void initGui()
 	{
+
 		
 		barwidth = EM_GuiEnviroMeters.barWidth;
 		
@@ -74,6 +77,8 @@ public class EM_Gui_Bars extends GuiScreen
 			int PosY = new BigDecimal(String.valueOf((((double)airButton.yPosition/(double)this.height)*100))).setScale(0, BigDecimal.ROUND_HALF_UP).intValue();
 			int PosX = new BigDecimal(String.valueOf((((double)airButton.xPosition/(double)this.width)*100))).setScale(0, BigDecimal.ROUND_HALF_UP).intValue();
 			UI_Settings.oxygenBarPos = "custom_"+ PosX +","+ PosY;
+			
+			System.out.println(UI_Settings.oxygenBarPos);
 		}
 		else if(hydratButton !=null && hydratButton.dragging)
 		{
@@ -81,6 +86,7 @@ public class EM_Gui_Bars extends GuiScreen
 			int PosY = new BigDecimal(String.valueOf((((double)hydratButton.yPosition/(double)this.height)*100))).setScale(0, BigDecimal.ROUND_HALF_UP).intValue();
 			int PosX = new BigDecimal(String.valueOf((((double)hydratButton.xPosition/(double)this.width)*100))).setScale(0, BigDecimal.ROUND_HALF_UP).intValue();
 			UI_Settings.waterBarPos = "custom_"+ PosX +","+ PosY;
+			System.out.println(UI_Settings.waterBarPos);
 		}
 		else if(sanButton !=null && sanButton.dragging)
 		{
@@ -88,6 +94,7 @@ public class EM_Gui_Bars extends GuiScreen
 			int PosY = new BigDecimal(String.valueOf((((double)sanButton.yPosition/(double)this.height)*100))).setScale(0, BigDecimal.ROUND_HALF_UP).intValue();
 			int PosX = new BigDecimal(String.valueOf((((double)sanButton.xPosition/(double)this.width)*100))).setScale(0, BigDecimal.ROUND_HALF_UP).intValue();
 			UI_Settings.sanityBarPos = "custom_"+ PosX +","+ PosY;
+			System.out.println(UI_Settings.sanityBarPos);
 		}
 		else if(tempButton !=null && tempButton.dragging)
 		{
@@ -95,6 +102,7 @@ public class EM_Gui_Bars extends GuiScreen
 			int PosY = new BigDecimal(String.valueOf((((double)tempButton.yPosition/(double)this.height)*100))).setScale(0, BigDecimal.ROUND_HALF_UP).intValue();
 			int PosX = new BigDecimal(String.valueOf((((double)tempButton.xPosition/(double)this.width)*100))).setScale(0, BigDecimal.ROUND_HALF_UP).intValue();
 			UI_Settings.heatBarPos = "custom_"+ PosX +","+ PosY;
+			System.out.println(UI_Settings.heatBarPos);
 		}
 
 	}
@@ -127,7 +135,10 @@ public class EM_Gui_Bars extends GuiScreen
 	
 	public int[] getPos(String Splitter)
 	{
-
+		ScaledResolution scaleRes = new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight);
+		int scaledwidth = scaleRes.getScaledWidth();
+		int scaledheight = scaleRes.getScaledHeight();
+	
 			 Splitter = Splitter.toLowerCase().trim();
 			
 			 Splitter = Splitter.replaceFirst("custom_", "").trim();
@@ -139,11 +150,11 @@ public class EM_Gui_Bars extends GuiScreen
 					int cX = Integer.parseInt(pos[0].trim());
 					int cY = Integer.parseInt(pos[1].trim());
 
-					intPos[0] = MathHelper.floor_float(cY/100F * (float)this.height);
-					intPos[1] = MathHelper.floor_float(cX/100F * (float)this.width);
+					//intPos[0] = MathHelper.floor_float(cY/100F * (float)this.height);
+					//intPos[1] = MathHelper.floor_float(cX/100F * (float)this.width);
 
-						
-
+					intPos[0] = MathHelper.floor_float(cY/100F * scaledheight);
+					intPos[1] = MathHelper.floor_float(cX/100F * scaledwidth);
 				}
 		
 		return intPos;
